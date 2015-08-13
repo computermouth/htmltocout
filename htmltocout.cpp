@@ -11,11 +11,12 @@ class Process{
 	string headerFile;
 	char** charDump;
 	int charDumpCount;
+	string* stringDump;
   public:
 
 	void dumpFile(){
 		ifstream html;
-		html.open(currentFile.c_str(), ios::binary);
+		html.open(currentFile.c_str());
 		
 		int count = 0;
 		
@@ -27,7 +28,7 @@ class Process{
 		}
 			
 		charDumpCount = count;
-			//~ 
+		
 		charDump = new char*[count];
 		for(int i = 0; i < count; i++)
 			charDump[i] = new char[1000];
@@ -45,6 +46,24 @@ class Process{
 		
 		html.close();
 	}
+	
+	void checkSensetive(){
+	
+		cout << charDumpCount;
+		stringDump = new string[charDumpCount];
+		for(int i = 0; i < charDumpCount; i++){
+			for(int j = 0; j < 995; j++){
+				if(charDump[i][j] == '/')
+					stringDump[i] += "\\";
+
+				stringDump[i] += charDump[i][j];
+					
+					
+			}
+				stringDump[i]+= "\\\n";
+				cout << stringDump[i] << endl;
+		}
+	}
 
 	Process(string c, string h){
 		//pull in file names
@@ -52,12 +71,18 @@ class Process{
 		headerFile = h;
 		
 		dumpFile();
+		checkSensetive();
 		
 		cout << "\n";
 		
 		ofstream head;
 		head.open(headerFile.c_str());
 		head << "\n\n";
+		
+		for(int i = 0; i < charDumpCount; i++){
+			head << stringDump[i] << endl;
+			cout << stringDump[i];
+		}
 		
 		head.close();
 		
@@ -68,6 +93,7 @@ class Process{
 		for(int i = 0; i < charDumpCount; i++)
 			delete [] charDump[i];
 		delete [] charDump;
+		delete [] stringDump;
 	}
 	
 };
