@@ -50,18 +50,20 @@ class Process{
 	void checkSensetive(){
 	
 		cout << charDumpCount;
-		stringDump = new string[charDumpCount];
+		stringDump = new string[charDumpCount+1];
 		for(int i = 0; i < charDumpCount; i++){
-			for(int j = 0; j < 995; j++){
-				if(charDump[i][j] == '/')
-					stringDump[i] += "\\";
+				stringDump[i] += ' ';
+			for(int j = 0; j < 999; j++){
+				if(charDump[i][j] == '/' || 
+					charDump[i][j] == '"' || 
+					charDump[i][j] == '\0')
+					stringDump[i] += '\\';
+					
 
 				stringDump[i] += charDump[i][j];
 					
 					
 			}
-				stringDump[i]+= "\n";
-				cout << stringDump[i] << endl;
 		}
 	}
 
@@ -73,18 +75,18 @@ class Process{
 		dumpFile();
 		checkSensetive();
 		
-		cout << "\n";
 		
 		ofstream head;
-		head.open(headerFile.c_str());
-		head << "\n\n";
+		head.open(headerFile.c_str(), ios::out);
 		
-		for(int i = 0; i < charDumpCount; i++){
-			head << stringDump[i] << endl;
-			cout << stringDump[i];
+		head << "\n cout << \" ";
+		
+		 for(int i = 0; i < charDumpCount; i++){
+			head << stringDump[i].c_str() << endl;
 		}
+		head << "\";";
 		
-		head.close();
+		//head.close();
 		
 		
 	}
