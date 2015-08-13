@@ -53,10 +53,9 @@ class Process{
 		stringDump = new string[charDumpCount+1];
 		for(int i = 0; i < charDumpCount; i++){
 				stringDump[i] += ' ';
-			for(int j = 0; j < 999; j++){
+			for(int j = 0; j < 1000; j++){
 				if(charDump[i][j] == '/' || 
 					charDump[i][j] == '"' ||
-					//charDump[i][j] == '\n' || 
 					charDump[i][j] == '\0')
 					stringDump[i] += '\\';
 					
@@ -86,9 +85,6 @@ class Process{
 			head << stringDump[i].c_str() << endl;
 		}
 		head << "\";\n\n}";
-		
-		//head.close();
-		
 		
 	}
 	
