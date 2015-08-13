@@ -60,7 +60,7 @@ class Process{
 					
 					
 			}
-				stringDump[i]+= "\\\n";
+				stringDump[i]+= "\n";
 				cout << stringDump[i] << endl;
 		}
 	}
