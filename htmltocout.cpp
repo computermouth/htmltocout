@@ -55,7 +55,8 @@ class Process{
 				stringDump[i] += ' ';
 			for(int j = 0; j < 999; j++){
 				if(charDump[i][j] == '/' || 
-					charDump[i][j] == '"' || 
+					charDump[i][j] == '"' ||
+					//charDump[i][j] == '\n' || 
 					charDump[i][j] == '\0')
 					stringDump[i] += '\\';
 					
