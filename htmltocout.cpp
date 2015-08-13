@@ -14,14 +14,14 @@ class Process{
   public:
 
 	void dumpFile(){
-		ifstream svg;
-		svg.open(currentFile.c_str(), ios::binary);
+		ifstream html;
+		html.open(currentFile.c_str(), ios::binary);
 		
 		int count = 0;
 		
-		while(!svg.eof()){
+		while(!html.eof()){
 			char buf[1000];
-			svg.getline(buf, 1000);
+			html.getline(buf, 1000);
 			
 			count++;
 		}
@@ -36,14 +36,14 @@ class Process{
 			for(int j = 0; j < 1000; j++)
 				charDump[i][j] = ' ';
 			
-		svg.clear();
-		svg.seekg(0, ios::beg);
+		html.clear();
+		html.seekg(0, ios::beg);
 		
 		for(int i = 0; i < count; i++){
-			svg.getline(charDump[i], 1000);
+			html.getline(charDump[i], 1000);
 		}
 		
-		svg.close();
+		html.close();
 	}
 
 	Process(string c, string h){
