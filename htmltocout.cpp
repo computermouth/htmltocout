@@ -67,7 +67,7 @@ class Process{
 		}
 	}
 
-	Process(string c, string h){
+	Process(string c, string h, string orig){
 		//pull in file names
 		currentFile = c;
 		headerFile = h;
@@ -79,12 +79,12 @@ class Process{
 		ofstream head;
 		head.open(headerFile.c_str(), ios::out);
 		
-		head << "\n cout << \" ";
+		head << "\n void print" << orig << "(){ \n\n cout << \" ";
 		
 		 for(int i = 0; i < charDumpCount; i++){
 			head << stringDump[i].c_str() << endl;
 		}
-		head << "\";";
+		head << "\";\n\n}";
 		
 		//head.close();
 		
@@ -112,7 +112,7 @@ int main(int argc, char* argv[]){
 		string headerFile = (currentFile.substr(0, lastindex) + ".h");
 		cout << headerFile << '\n';
 		
-		Process process(currentFile, headerFile);
+		Process process(currentFile, headerFile, (currentFile.substr(0, lastindex)));
 		
 			
 	}
